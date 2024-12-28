@@ -70,6 +70,14 @@
 			<artifactId>guava</artifactId>
 			<version>32.1.2-jre</version>
 		</dependency>
+
+		<!-- adicionei um BD para registrar as chamadas-->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.6.0</version> <!-- Use the latest version -->
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -1,7 +1,7 @@
 package com.fviel.urlshortener.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.RequestEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,25 +11,37 @@ import com.fviel.urlshortener.entities.Url;
 import com.fviel.urlshortener.interfaces.UrlManager;
 
 @RestController
-@RequestMapping(value = "/urlShortener")
+@RequestMapping(value = "/shorty/url")
 public class UrlController {
 
+
+    /*
+    Funciona desta forma, mas não é indicado, o correto é fazer uso da construtora
     @Autowired
     private UrlManager urlManager;
+    */
 
-    @RequestMapping(value = "/{url}", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity<String> shortenUrl(@PathVariable String url) {
-        Url shortUrlEntry = urlManager.shortenUrl(url);
-        System.out.println("URL de entrada: " + url + "\nURL encurtada: " + shortUrlEntry.getUrl());
-        return ResponseEntity.ok(url);
-        
+    private final UrlManager urlManager;
+    public UrlController(UrlManager urlManager){
+        this.urlManager = urlManager;
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/{fullurl}", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> getUrl(@PathVariable String key) {
-        String url = urlManager.getUrlByKey(key);
-        return ResponseEntity.ok(url);
+    public ResponseEntity<String> shortenUrl(@PathVariable String fullurl) {
+        Url shortUrlEntry = urlManager.shortenUrl(fullurl);
+        return ResponseEntity.ok(shortUrlEntry.toString());        
+    }
+
+    @RequestMapping(value = "/v1/{fullurl}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> getUrl(@PathVariable String fullurl) {       
+        if(fullurl != null){
+            String url = urlManager.getShortenUrlByOriginalUrl(fullurl);
+            return ResponseEntity.ok(url);
+        }else{
+            //corrigir isto
+            return ResponseEntity.ok("falha");
+        }
     }
 }

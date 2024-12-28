@@ -11,13 +11,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class Url {
-
-    @NotNull
-    private Integer key;
+public class Url {  
 
     @NotBlank
-    private String url;
+    private String originalUrl;
+
+    @NotNull
+    private String shortenUrl;
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -27,24 +27,24 @@ public class Url {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Url(Integer key, String url){
-        this.key = key;
-        this.url = url;
+    public Url(String originalUrl, String shortenUrl){
+        this.originalUrl = originalUrl;
+        this.shortenUrl = shortenUrl;
         this.createdAt = LocalDateTime.now();  
     }
 
-    public Integer getKey(){
-        return key;
+    public String getOriginalUrl(){
+        return originalUrl;
     }   
-    public void setKey(Integer key){
-        this.key = key;
+    public void setOriginalUrl(String originalUrl){
+        this.originalUrl = originalUrl;
     }   
-    public String getUrl(){
-        return url;
+    public String getShortenUrl(){
+        return shortenUrl;
     }   
 
-    public void setUrl(String url){
-        this.url = url;
+    public void setShortenUrl(String shortenUrl){
+        this.shortenUrl = shortenUrl;
     }
 
     public LocalDateTime getCreatedAt(){
@@ -56,6 +56,10 @@ public class Url {
     }   
 
     public String toString(){
-        return "Url{" + "key=" + key + ", url='" + url + '\'' + ", createdAt=" + createdAt + '}';
+        return "Url{\n" + 
+        "originalUrl=" + originalUrl + ", \n" +
+        "shortenUrl='" + shortenUrl + ", \n" +
+        "createdAt=" + createdAt + ", \n" +
+        "}";
     }   
 }
