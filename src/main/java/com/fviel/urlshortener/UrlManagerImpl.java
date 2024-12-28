@@ -2,12 +2,16 @@ package com.fviel.urlshortener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
 import com.fviel.urlshortener.entities.Url;
+import com.fviel.urlshortener.interfaces.UrlManager;
 import jakarta.validation.constraints.NotBlank;
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
 
-public class UrlManagerImpl implements com.fviel.urlshortener.interfaces.UrlManager {
+@Service
+public class UrlManagerImpl implements UrlManager {
     @Autowired
     private RedisTemplate<String, Url> redisTemplate;
 
