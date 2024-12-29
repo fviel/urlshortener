@@ -1,4 +1,7 @@
 
+
+#clear;mvn clean install -Dspring.profiles.active=dev;clear;mvn spring-boot:run
+
 To create a Dockerfile for a Spring Boot project that uses Redis, follow these steps:
 
 Requirements:

@@ -1,16 +1,17 @@
-# Use a base image with JDK 17 or 11
-#Replace your-spring-app.jar with the actual name of your JAR file in the target directory.
-FROM eclipse-temurin:23-jdk-alpine
+FROM tomcat:10.1.34-jdk17-temurin
 
-# Set the working directory
-WORKDIR /app
+# Set environment variables
+ENV CATALINA_HOME=/usr/local/tomcat
+ENV PATH=$CATALINA_HOME/bin:$PATH
 
-# Copy the application JAR file into the container
-#
-COPY target/your-spring-app.jar /app/app.jar
+# Remove default ROOT application to avoid conflicts
+RUN rm -rf $CATALINA_HOME/webapps/ROOT
 
-# Expose the port the app will run on
+# Copy the WAR file to the webapps directory in Tomcat
+COPY target/urlshortener-0.0.1-SNAPSHOT.war $CATALINA_HOME/webapps/ROOT.war
+
+# Expose the Tomcat port (default is 8080)
 EXPOSE 8080
 
-# Specify the command to run the application
-CMD ["java", "-jar", "/app/app.jar"]
+# Start Tomcat
+CMD ["catalina.sh", "run"]
