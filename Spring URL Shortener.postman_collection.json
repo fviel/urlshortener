@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "3216cd69-cd65-409e-8f6b-022ef1e0dab8",
+		"name": "Spring URL Shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24015314"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/maintenance/v1/ping",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"maintenance",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new URL entry by full URL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/url/v1/fernando",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"url",
+						"v1",
+						"fernando"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get shorten URL by full URL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/url/v1/-1597781016",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"url",
+						"v1",
+						"-1597781016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all redis entries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/maintenance/v1/redis",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"maintenance",
+						"v1",
+						"redis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all redis entries",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/maintenance/v1/redis",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"maintenance",
+						"v1",
+						"redis"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
