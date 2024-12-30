@@ -14,9 +14,7 @@ mvn spring-boot:run
 ```
 
 ## Docker commands
-docker network create app-network
-docker run -d --name redis --network app-network redis:alpine
-docker run -d --name spring-app --network app-network -e SPRING_REDIS_HOST=redis -e
+sudo docker compose up --build
 
 ## References 
 [Medium article] (https://medium.com/geekculture/create-your-own-url-shorteners-with-spring-boot-redis-289c9000f747)
