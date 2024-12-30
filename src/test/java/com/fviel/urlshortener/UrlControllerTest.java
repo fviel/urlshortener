@@ -1,6 +1,9 @@
 package com.fviel.urlshortener;
 
 import static org.mockito.Mockito.*;
+
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -34,10 +37,11 @@ class UrlControllerTest {
         when(urlManager.shortenUrl(fullUrl)).thenReturn(mockUrl);
 
         // Act
-        ResponseEntity<String> response = urlController.shortenUrl(fullUrl);
+        ResponseEntity<String> response = urlController.shortenUrl(fullUrl);  
 
         // Assert
-        assertEquals(200, response.getStatusCode());
+        Set<String> validAnswers = Set.of("200", "200 OK");
+        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
         assertEquals(mockUrl.toString(), response.getBody());
         verify(urlManager, times(1)).shortenUrl(fullUrl);
     }
@@ -52,7 +56,10 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.shortenUrl(fullUrl);
 
         // Assert
-        assertEquals(200, response.getStatusCodeValue());
+        Set<String> validAnswers = Set.of("200", "200 OK");
+        String responseStr = response.getStatusCode().toString(); 
+        assertNotNull(responseStr);
+        assertTrue(validAnswers.contains(responseStr), "Invalid answer");
         assertNull(response.getBody());
     }
 
@@ -67,7 +74,8 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.getUrl(fullUrl);
 
         // Assert
-        assertEquals(200, response.getStatusCodeValue());
+        Set<String> validAnswers = Set.of("200", "200 OK");
+        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
         assertEquals(shortenedUrl, response.getBody());
         verify(urlManager, times(1)).getShortenUrlByOriginalUrl(fullUrl);
     }
@@ -81,7 +89,9 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.getUrl(fullUrl);
 
         // Assert
-        assertEquals(404, response.getStatusCodeValue());
+        //assertEquals(404, response.getStatusCode());
+        Set<String> validAnswers = Set.of("404", "404 NOT_FOUND");
+        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
         assertEquals("Resource not found", response.getBody());
     }
 
@@ -95,7 +105,8 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.getUrl(fullUrl);
 
         // Assert
-        assertEquals(200, response.getStatusCodeValue());
+        Set<String> validAnswers = Set.of("200", "200 OK");
+        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
         assertNull(response.getBody());
     }
 }
