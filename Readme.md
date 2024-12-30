@@ -20,3 +20,4 @@ docker run -d --name spring-app --network app-network -e SPRING_REDIS_HOST=redis
 
 ## References 
 [Medium article] (https://medium.com/geekculture/create-your-own-url-shorteners-with-spring-boot-redis-289c9000f747)
+
