@@ -1,4 +1,4 @@
-# Shorty - A simples Spring Boot with Redis URL shortener
+# Shorty - A simple Spring Boot with Redis URL shortener
 
 ## Description
 It's a simple URL shortener API, with endpoints to add and read URL's;
