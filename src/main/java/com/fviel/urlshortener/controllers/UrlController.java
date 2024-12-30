@@ -1,7 +1,6 @@
 package com.fviel.urlshortener.controllers;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.RequestEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,8 +39,7 @@ public class UrlController {
             String url = urlManager.getShortenUrlByOriginalUrl(fullurl);
             return ResponseEntity.ok(url);
         }else{
-            //corrigir isto
-            return ResponseEntity.ok("falha");
+            return ResponseEntity.status(404).body("Resource not found");
         }
     }
 }
