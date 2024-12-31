@@ -29,6 +29,9 @@ public class UrlController {
     @ResponseBody
     public ResponseEntity<String> shortenUrl(@PathVariable String fullurl) {
         Url shortUrlEntry = urlManager.shortenUrl(fullurl);
+        if (shortUrlEntry == null) {
+            return ResponseEntity.status(500).body("Failed to shorten URL");
+        }
         return ResponseEntity.ok(shortUrlEntry.toString());        
     }
 
