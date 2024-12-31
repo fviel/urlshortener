@@ -1,16 +1,13 @@
 package com.fviel.urlshortener;
 
 import static org.mockito.Mockito.*;
-
 import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
-
 import com.fviel.urlshortener.controllers.UrlController;
 import com.fviel.urlshortener.entities.Url;
 import com.fviel.urlshortener.interfaces.UrlManager;
@@ -40,10 +37,14 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.shortenUrl(fullUrl);  
 
         // Assert
-        Set<String> validAnswers = Set.of("200", "200 OK");
-        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
-        assertEquals(mockUrl.toString(), response.getBody());
-        verify(urlManager, times(1)).shortenUrl(fullUrl);
+        assertNotNull(response);
+        if(response != null){
+            //Set<String> validAnswers = Set.of("200", "200 OK");
+            //assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
+            assertEquals(200, response.getStatusCode().value());
+            assertEquals(mockUrl.toString(), response.getBody());
+            verify(urlManager, times(1)).shortenUrl(fullUrl);
+        }
     }
 
     @Test
@@ -51,16 +52,14 @@ class UrlControllerTest {
         // Arrange
         String fullUrl = "https://example.com";
         when(urlManager.shortenUrl(fullUrl)).thenReturn(null);
-
+    
         // Act
         ResponseEntity<String> response = urlController.shortenUrl(fullUrl);
-
+    
         // Assert
-        Set<String> validAnswers = Set.of("200", "200 OK");
-        String responseStr = response.getStatusCode().toString(); 
-        assertNotNull(responseStr);
-        assertTrue(validAnswers.contains(responseStr), "Invalid answer");
-        assertNull(response.getBody());
+        assertNotNull(response);
+        assertEquals(500, response.getStatusCode().value());
+        assertEquals("Failed to shorten URL", response.getBody());
     }
 
     @Test
@@ -74,8 +73,7 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.getUrl(fullUrl);
 
         // Assert
-        Set<String> validAnswers = Set.of("200", "200 OK");
-        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
+        assertEquals(200, response.getStatusCode().value());
         assertEquals(shortenedUrl, response.getBody());
         verify(urlManager, times(1)).getShortenUrlByOriginalUrl(fullUrl);
     }
@@ -89,9 +87,7 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.getUrl(fullUrl);
 
         // Assert
-        //assertEquals(404, response.getStatusCode());
-        Set<String> validAnswers = Set.of("404", "404 NOT_FOUND");
-        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
+        assertEquals(404, response.getStatusCode().value());
         assertEquals("Resource not found", response.getBody());
     }
 
@@ -105,8 +101,7 @@ class UrlControllerTest {
         ResponseEntity<String> response = urlController.getUrl(fullUrl);
 
         // Assert
-        Set<String> validAnswers = Set.of("200", "200 OK");
-        assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
+        assertEquals(200, response.getStatusCode().value());
         assertNull(response.getBody());
     }
 }
