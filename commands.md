@@ -1,13 +1,15 @@
-# Commands for project 
----
+# Commands history
+<br>
 
-## 1. Configures GIT vars
+## ⚡1. Configures GIT vars
 ```
 git config --global user.name "Fernando Viel"
 git config --global user.email "nandoviel@gmail.com"
 ```
----
-## 2. Configures Ubuntu, Docker, Java
+<br>
+<br>
+
+## ⚡2. Configures Ubuntu, Docker, Java
 ### 2.1. Updates my apt repository
 ```
 sudo apt update
@@ -23,9 +25,9 @@ sudo systemctl status docker
 ```
 
 ### 2.4. Grants permissions for my user to run docker commands without sudo
-```
+`
 sudo usermod -aG sudo $USER
-```
+`
 
 ### 2.5. Lists my locally cached docker images
 ```
@@ -91,9 +93,12 @@ source ~/.bashrc
 ```
 echo $JAVA_HOME
 ```
----
 
-## 3. Buils locally the application
+
+<br>
+<br>
+
+## ⚡3. Buils locally the application
 
 ### 3.1. Builds the shorty-app
 ```
@@ -110,8 +115,11 @@ mvn test
 mvn spring-boot:run
 ```
 
----
-## 4. Docker commands  
+
+<br>
+<br>
+
+## ⚡4. Docker commands  
 
 
 ###  4.1. Builds the docker image from the Dockerfile from shorty-app project
