@@ -1,10 +1,7 @@
 package com.fviel.urlshortener.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
 import com.fviel.urlshortener.entities.Url;
 import com.fviel.urlshortener.interfaces.UrlManager;
 import jakarta.validation.constraints.NotBlank;

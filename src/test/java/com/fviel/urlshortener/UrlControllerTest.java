@@ -1,7 +1,6 @@
 package com.fviel.urlshortener;
 
 import static org.mockito.Mockito.*;
-import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
