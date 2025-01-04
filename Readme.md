@@ -1,12 +1,12 @@
 # Shorty - A Spring Boot with Redis URL shortener
 
-<div align="center">
+
 [![](https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=black)]()
 [![](https://img.shields.io/badge/Redis-FF4438.svg?style=for-the-badge&logo=Redis&logoColor=black)]()
 [![](https://img.shields.io/badge/Ubuntu-E95420.svg?style=for-the-badge&logo=Ubuntu&logoColor=black)]()
 [![](https://img.shields.io/badge/Postman-FF6C37.svg?style=for-the-badge&logo=Postman&logoColor=black)]()
 [![](https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=Docker&logoColor=black)]()
-</div>
+
 ## 📄Description
 It's a simple URL shortener API, with endpoints to add and read URL's;
 
