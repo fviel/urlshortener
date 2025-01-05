@@ -1,4 +1,4 @@
-# Commands history
+# :page_with_curl:Commands history
 <br>
 
 ## ⚡1. Configures GIT vars
@@ -146,4 +146,35 @@ docker network connect app-network shorty-app
 ### 4.5. Show network details
 ```
 docker inspect network app-network
+```
+
+## 5. Running containers isolated
+
+### 5.1. Redis
+```
+sudo docker run -d --name redis-container -p 6379:6379 -v redis-data:/data redis:alpine --save 60 1
+```
+
+### 5.2. Shorty app
+```
+sudo docker run  -d --name shorty-app -p 9090:8080 shorty-app:0.0.1
+```
+## 5.3. Creating a new network
+```
+docker network create --driver bridge --subnet=192.168.1.0/24 nwviel
+```
+
+## 5.4. Running a Redis container with a specific IP 
+```
+docker run -d --name redis-container --net nwviel --ip 192.168.1.133 -p 6379:6379 -v redis-data:/data redis:alpine --save 60 1
+```
+
+## Listing networks
+```
+docker network ls
+```
+
+## Inspecting a specific network
+```
+docker network inspect nwviel
 ```

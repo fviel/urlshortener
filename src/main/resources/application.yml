@@ -1,0 +1,13 @@
+---
+spring:
+  redis:
+    test: profile-default
+    host: ${SPRING_REDIS_HOST}
+    port: 6379
+    password: null
+app:
+  name: shorty-dev
+  version: 1.0.0
+  author:
+    name: Fernando Viel
+    email: fviel1982@gmail.com

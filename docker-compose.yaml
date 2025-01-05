@@ -8,12 +8,13 @@ services:
     ports:
       - "8080:8080"
     environment:
+      - SPRING_PROFILES_ACTIVE=dev
       - SPRING_REDIS_HOST=redis
       - SPRING_REDIS_PORT=6379
     depends_on:
       - redis
     networks:
-      - app-network
+      - shorty-network
 
   redis:
       image: redis:7.4.1-alpine
@@ -21,13 +22,13 @@ services:
       ports:
         - "6379:6379"
       networks:
-        - app-network      
+        - shorty-network      
       volumes:
         - redis-data:/data
 
 networks:
-  app-network:
-    external: true
+  shorty-network:
+    external: false
     driver: bridge
 
 volumes:

@@ -1,4 +1,4 @@
-# Shorty - A Spring Boot with Redis URL shortener
+# :star:Shorty - A Spring Boot with Redis URL shortener
 
 
 [![](https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=black)]()
@@ -18,12 +18,12 @@ It's a simple URL shortener API, with endpoints to add and read URL's;
 - Apache Tomcat 10.1.34 (https://tomcat.apache.org/)
 - Postman (https://www.postman.com/)
 
-## 🚀Compile
+## :sparkles:Compile
 ```
 mvn clean install -Dspring.profiles.active=dev
 ```
 
-## 🚀Run locally
+## :running:Run locally
 ```
 mvn spring-boot:run
 ```
