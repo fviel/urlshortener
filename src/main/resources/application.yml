@@ -1,8 +1,7 @@
 ---
 spring:
   redis:
-    test: profile-default
-    host: ${SPRING_REDIS_HOST}
+    test: profile-default| redis}
     port: 6379
     password: null
 app:

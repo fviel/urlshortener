@@ -2,7 +2,7 @@
 spring:
   redis:
     test: profile-dev
-    host: ${SPRING_REDIS_HOST:172.19.0.2}
+    host: ${SPRING_REDIS_HOST | redis}
     port: 6379
     password: null
 app:

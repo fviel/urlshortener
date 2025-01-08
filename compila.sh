@@ -1,7 +1,7 @@
 clear
 echo "###############################################################"
 echo "### 1. Docker compose DOWN"
-docker compose down --volumes
+sudo docker compose down --volumes
 sleep 1
 
 echo "###############################################################"
@@ -16,4 +16,4 @@ sleep 1
 
 echo "###############################################################"
 echo "### 4. Docker compose UP"
-docker compose up --build
+sudo docker compose up --build
