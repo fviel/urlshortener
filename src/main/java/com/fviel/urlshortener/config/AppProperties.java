@@ -6,16 +6,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppProperties {
 
-    @Value("${spring.redis.test}")
-    private String rtest;
-
-    @Value("${spring.redis.host}")
+    @Value("${spring.data.redis.host}")
     private String rhost;
 
-    @Value("${spring.redis.port}")
+    @Value("${spring.data.redis.port}")
     private String rport;
 
-    @Value("${spring.redis.password}")
+    @Value("${spring.data.redis.password}")
     private String rpwd;
 
     @Value("${app.name}")
@@ -32,27 +29,10 @@ public class AppProperties {
 
 
 
-/*
- ---
-spring:
-  redis:
-    test: profile-default
-    host: redis
-    port: 6379
-    password: null
-app:
-  name: shorty-dev
-  version: 1.0.0
-  author:
-    name: Fernando Viel
-    email: fviel1982@gmail.com
- */
-
 
     public String toString(){
         String resp =
         "application.yml{" +
-            "\nspring.redis.test: " + rtest + 
             "\nspring.redis.host: " + rhost + 
             "\nspring.redis.port: " + rport +
             "\nspring.redis.password " + rpwd +
