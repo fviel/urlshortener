@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 clear
 echo "###############################################################"
 echo "### 1. Docker compose DOWN"
