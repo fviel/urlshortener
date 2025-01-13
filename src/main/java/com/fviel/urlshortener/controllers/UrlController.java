@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.fviel.urlshortener.entities.Url;
+import com.fviel.urlshortener.enums.ShorterAlgorithmEnum;
 import com.fviel.urlshortener.interfaces.UrlManager;
 
 @RestController
@@ -25,24 +26,54 @@ public class UrlController {
         this.urlManager = urlManager;
     }
 
-    @RequestMapping(value = "/v1/{fullurl}", method = RequestMethod.POST)
+    @RequestMapping(value = "/v1/{originalUrl}", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> shortenUrl(@PathVariable String fullurl) {
-        Url shortUrlEntry = urlManager.shortenUrl(fullurl);
+    public ResponseEntity<String> shortenUrl(@PathVariable String originalUrl) {
+        Url shortUrlEntry = urlManager.addNewUrl(originalUrl, ShorterAlgorithmEnum.MURMUR3 );
         if (shortUrlEntry == null) {
             return ResponseEntity.status(500).body("Failed to shorten URL");
         }
         return ResponseEntity.ok(shortUrlEntry.toString());        
     }
 
-    @RequestMapping(value = "/v1/{fullurl}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/{originalUrl}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> getUrl(@PathVariable String fullurl) {       
-        if(fullurl != null){
-            String url = urlManager.getShortenUrlByOriginalUrl(fullurl);
+    public ResponseEntity<String> getUrl(@PathVariable String originalUrl) {       
+        if(originalUrl != null){
+            String url = urlManager.getShortenUrlByOriginalUrl(originalUrl);
             return ResponseEntity.ok(url);
         }else{
             return ResponseEntity.status(404).body("Resource not found");
         }
+    }
+
+    @RequestMapping(value = "/v1/murmur/{originalUrl}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> shortenUrlMurmur(@PathVariable String originalUrl) {
+        Url shortUrlEntry = urlManager.addNewUrl(originalUrl, ShorterAlgorithmEnum.MURMUR3 );
+        if (shortUrlEntry == null) {
+            return ResponseEntity.status(500).body("Failed to shorten URL");
+        }
+        return ResponseEntity.ok(shortUrlEntry.toString());        
+    }
+
+    @RequestMapping(value = "/v1/sha256/{originalUrl}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> shortenUrlSha256(@PathVariable String originalUrl) {
+        Url shortUrlEntry = urlManager.addNewUrl(originalUrl, ShorterAlgorithmEnum.SHA256);
+        if (shortUrlEntry == null) {
+            return ResponseEntity.status(500).body("Failed to shorten URL");
+        }
+        return ResponseEntity.ok(shortUrlEntry.toString());        
+    }
+
+    @RequestMapping(value = "/v1/md5/{originalUrl}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> shortenUrlmd5(@PathVariable String originalUrl) {
+        Url shortUrlEntry = urlManager.addNewUrl(originalUrl, ShorterAlgorithmEnum.MD5 );
+        if (shortUrlEntry == null) {
+            return ResponseEntity.status(500).body("Failed to shorten URL");
+        }
+        return ResponseEntity.ok(shortUrlEntry.toString());        
     }
 }
