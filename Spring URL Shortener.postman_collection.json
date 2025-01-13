@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3216cd69-cd65-409e-8f6b-022ef1e0dab8",
+		"_postman_id": "6917d77f-6eb4-40fa-ad99-75ad5cfa0705",
 		"name": "Spring URL Shortener",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24015314"
+		"_exporter_id": "38795758"
 	},
 	"item": [
 		{
@@ -40,6 +40,69 @@
 						"shorty",
 						"url",
 						"v1",
+						"fernando"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new URL entry by full URL MURMUR3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/url/v1/murmur/fernando",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"url",
+						"v1",
+						"murmur",
+						"fernando"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new URL entry by full URL SHA256",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/url/v1/sha256/fernando",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"url",
+						"v1",
+						"sha256",
+						"fernando"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new URL entry by full URL MD5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/url/v1/md5/fernando",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"url",
+						"v1",
+						"md5",
 						"fernando"
 					]
 				}
@@ -101,6 +164,46 @@
 						"maintenance",
 						"v1",
 						"redis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get environment values",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/maintenance/v1/env",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"maintenance",
+						"v1",
+						"env"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get application.yml props values",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/shorty/maintenance/v1/prop",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"shorty",
+						"maintenance",
+						"v1",
+						"prop"
 					]
 				}
 			},
