@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 import com.fviel.urlshortener.controllers.UrlController;
 import com.fviel.urlshortener.entities.Url;
+import com.fviel.urlshortener.enums.ShorterAlgorithmEnum;
 import com.fviel.urlshortener.interfaces.UrlManager;
 
 class UrlControllerTest {
@@ -30,7 +31,7 @@ class UrlControllerTest {
         //Url mockUrl = new Url("short.ly/12345");
         Url mockUrl = new Url("https://example.com", "short.ly/12345");       
 
-        when(urlManager.shortenUrl(fullUrl)).thenReturn(mockUrl);
+        when(urlManager.addNewUrl(fullUrl, ShorterAlgorithmEnum.MURMUR3 )).thenReturn(mockUrl);
 
         // Act
         ResponseEntity<String> response = urlController.shortenUrl(fullUrl);  
@@ -42,7 +43,7 @@ class UrlControllerTest {
             //assertTrue(validAnswers.contains(response.getStatusCode().toString()), "Invalid answer");
             assertEquals(200, response.getStatusCode().value());
             assertEquals(mockUrl.toString(), response.getBody());
-            verify(urlManager, times(1)).shortenUrl(fullUrl);
+            verify(urlManager, times(1)).addNewUrl(fullUrl, ShorterAlgorithmEnum.MURMUR3);
         }
     }
 
@@ -50,7 +51,7 @@ class UrlControllerTest {
     void shortenUrl_ShouldHandleNullUrlManagerResponse() {
         // Arrange
         String fullUrl = "https://example.com";
-        when(urlManager.shortenUrl(fullUrl)).thenReturn(null);
+        when(urlManager.addNewUrl(fullUrl, ShorterAlgorithmEnum.MURMUR3)).thenReturn(null);
     
         // Act
         ResponseEntity<String> response = urlController.shortenUrl(fullUrl);
